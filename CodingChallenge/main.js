@@ -10,6 +10,29 @@ var employees = [
 
 // Part 2 Answer Here
 
+groupParse = (employees) => {
+    let obj = {}; //initialize return object
+    employees.forEach(function(employee) { // loop through all employees in list
+        let name;
+        if ("nameOrder" in employee) {    // checks name order 
+            name = {name: employee["last"] + ' ' + employee["first"]};
+        }
+        else {
+            name = {name: employee["first"] + ' ' + employee["last"]};
+        }
+        if (!(employee["group"] in obj)){ // if group doesn't exist yet add else add onto current list of name objects
+            obj[employee["group"]] = [name];
+        }
+        else{
+            obj[employee["group"]].push(name)
+        }
+        
+    });
+    return(obj)
+};
+
+console.log(groupParse(employees))
+
 /*****************************************************************************************
 * Bonus
 ****************************************************************************************/
